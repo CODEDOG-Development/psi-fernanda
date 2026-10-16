@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="pt-BR"> 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fernanda T. Sanches | Psicóloga Clínica e Neuropsicóloga</title>
+  <meta name="description" content="Atendimento psicológico online e presencial em Ribeirão Pires - SP. Psicoterapia clínica e neuroavaliação psicológica com escuta acolhedora e base científica.">
+  <meta name="theme-color" content="#2f6a69">
+
+  <!-- Fontes: serifada elegante para títulos + sem serifa leve para textos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Marca que o JS está ativo ANTES da página aparecer (evita "piscar" nas animações) -->
+  <script>document.documentElement.classList.add('js');</script>
+  <!-- defer: o script só roda depois que o HTML inteiro foi lido -->
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+  <!-- Atalho de acessibilidade: aparece só quando navega com a tecla Tab -->
+  <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+  <!-- =========================================================
+       SPRITE SVG: desenhos definidos UMA vez e reaproveitados
+       com <use href="#id">. Deixa o HTML mais limpo.
+       ========================================================= -->
+  <svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+
+    <!-- Borboleta (marca da psicóloga) -->
+    <symbol id="borboleta" viewBox="0 0 200 170">
+      <g id="asa">
+        <!-- asa superior -->
+        <path d="M97 64C88 40 60 14 12 8C6 24 10 48 28 62C46 76 74 80 97 76Z"/>
+        <path d="M97 70L18 13"/>
+        <path d="M97 70Q60 44 11 26"/>
+        <path d="M97 72Q58 56 16 44"/>
+        <path d="M97 74Q62 68 28 60"/>
+        <path d="M97 75Q72 79 50 77"/>
+        <path d="M58 48Q55 58 63 66"/>
+        <circle cx="24" cy="15" r="1.6" fill="currentColor"/>
+        <circle cx="14" cy="30" r="1.4" fill="currentColor"/>
+        <circle cx="17" cy="47" r="1.3" fill="currentColor"/>
+        <!-- asa inferior -->
+        <path d="M97 80C78 80 50 88 40 106C32 122 40 140 56 140C60 152 76 158 86 146C96 132 98 106 97 80Z"/>
+        <path d="M97 86Q70 92 48 106"/>
+        <path d="M97 88Q74 106 56 128"/>
+        <path d="M97 90Q86 116 78 144"/>
+        <!-- faixa ornamental preenchida na borda da asa inferior -->
+        <path d="M44 112C40 126 48 136 58 134C62 144 74 148 82 140C78 138 74 135 70 130C62 132 54 128 52 120C50 116 48 114 44 112Z" fill="currentColor" fill-opacity=".9"/>
+        <circle cx="60" cy="118" r="1.6" fill="currentColor"/>
+        <circle cx="70" cy="126" r="1.6" fill="currentColor"/>
+        <circle cx="80" cy="132" r="1.6" fill="currentColor"/>
+        <path d="M56 140C54 148 54 154 59 160"/>
+      </g>
+      <!-- espelha a asa para criar o lado direito -->
+      <use href="#asa" transform="translate(200 0) scale(-1 1)"/>
+      <!-- corpo e antenas -->
+      <circle cx="100" cy="58" r="3" fill="currentColor"/>
+      <ellipse cx="100" cy="71" rx="3.2" ry="9" fill="currentColor"/>
+      <ellipse cx="100" cy="99" rx="2.4" ry="20" fill="currentColor"/>
+      <path d="M99 56Q94 36 82 26M101 56Q106 36 118 26"/>
+      <circle cx="82" cy="26" r="1.6" fill="currentColor"/>
+      <circle cx="118" cy="26" r="1.6" fill="currentColor"/>
+    </symbol>
+
+    <!-- Ícones de linha (24x24) -->
+    <symbol id="i-whats" viewBox="0 0 24 24">
+      <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>
+      <path d="M9.2 8.3c.2-.4.5-.5.8-.5h.5c.2 0 .4.1.5.4l.6 1.5c.1.2 0 .5-.1.6l-.5.6c.6 1.2 1.6 2.2 2.8 2.8l.6-.5c.2-.1.4-.2.6-.1l1.5.6c.3.1.4.3.4.5v.5c0 .3-.1.6-.5.8-.6.4-1.4.5-2.2.2-2.4-.8-4.3-2.7-5.1-5.1-.3-.8-.2-1.6.1-2.3Z" fill="currentColor" stroke="none"/>
+    </symbol>
+    <symbol id="i-broto" viewBox="0 0 24 24">
+      <path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/>
+      <path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8Z"/>
+      <path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2Z"/>
+    </symbol>
+    <symbol id="i-cerebro" viewBox="0 0 24 24">
+      <path d="M12 5a3 3 0 1 0-6 .1 4 4 0 0 0-2.5 5.8 4 4 0 0 0 .5 6.6A4 4 0 1 0 12 18Z"/>
+      <path d="M12 5a3 3 0 1 1 6 .1 4 4 0 0 1 2.5 5.8 4 4 0 0 1-.5 6.6A4 4 0 1 1 12 18Z"/>
+      <path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"/>
+      <path d="M17.6 6.5a3 3 0 0 0 .4-1.4M6 5.1a3 3 0 0 0 .4 1.4M3.5 10.9a4 4 0 0 1 .6-.4M19.9 10.5a4 4 0 0 1 .6.4M6 18a4 4 0 0 1-2-.5M20 17.5a4 4 0 0 1-2 .5"/>
+    </symbol>
+    <symbol id="i-notebook" viewBox="0 0 24 24">
+      <rect x="4" y="5" width="16" height="11" rx="1.5"/><path d="M2 19h20"/>
+    </symbol>
+    <symbol id="i-poltrona" viewBox="0 0 24 24">
+      <path d="M19 9V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v3"/>
+      <path d="M3 16a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V11a2 2 0 0 0-4 0Z"/>
+      <path d="M5 18v2M19 18v2"/>
+    </symbol>
+    <symbol id="i-folha" viewBox="0 0 24 24">
+      <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8 0 5.5-4.8 10-10 10Z"/>
+      <path d="M2 21c0-3 1.9-5.4 5.1-6C9.5 14.5 12 13 13 12"/>
+    </symbol>
+    <symbol id="i-coracao" viewBox="0 0 24 24">
+      <path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7Z"/>
+    </symbol>
+    <symbol id="i-pessoas" viewBox="0 0 24 24">
+      <circle cx="8" cy="7" r="3.5"/><path d="M2 21v-1.5A4.5 4.5 0 0 1 6.5 15h3a4.5 4.5 0 0 1 4.5 4.5V21"/>
+      <circle cx="17" cy="8" r="3"/><path d="M16 15h1.5a4.5 4.5 0 0 1 4.5 4.5V21"/>
+    </symbol>
+    <symbol id="i-escudo" viewBox="0 0 24 24">
+      <path d="M20 13c0 5-3.5 7.5-7.7 9a1 1 0 0 1-.6 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.2-2.7a1.2 1.2 0 0 1 1.6 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1Z"/>
+      <path d="m9 12 2 2 4-4"/>
+    </symbol>
+    <symbol id="i-conversa" viewBox="0 0 24 24">
+      <path d="M15 10a6 6 0 1 0-11.2 3L3 16l3-.8A6 6 0 0 0 15 10Z"/>
+      <path d="M17.5 9.2A5.5 5.5 0 0 1 20.2 17l.8 3-3-.8a5.5 5.5 0 0 1-7.5-1.6"/>
+    </symbol>
+    <symbol id="i-calendario" viewBox="0 0 24 24">
+      <rect x="3" y="4" width="18" height="18" rx="2"/>
+      <path d="M16 2v4M8 2v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/>
+    </symbol>
+    <symbol id="i-monitor" viewBox="0 0 24 24">
+      <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+    </symbol>
+    <symbol id="i-local" viewBox="0 0 24 24">
+      <path d="M20 10c0 5-5.5 10.2-7.4 11.8a1 1 0 0 1-1.2 0C9.5 20.2 4 15 4 10a8 8 0 0 1 16 0"/>
+      <circle cx="12" cy="10" r="3"/>
+    </symbol>
+    <symbol id="i-email" viewBox="0 0 24 24">
+      <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-9 5.7a2 2 0 0 1-2 0L2 7"/>
+    </symbol>
+    <symbol id="i-seta" viewBox="0 0 24 24">
+      <path d="M5 12h14M12 5l7 7-7 7"/>
+    </symbol>
+    <symbol id="i-fechar" viewBox="0 0 24 24">
+      <path d="M18 6 6 18M6 6l12 12"/>
+    </symbol>
+  </svg>
+
+  <!-- =========================================================
+       CABEÇALHO (fixo no topo)
+       ========================================================= -->
+  <header class="cabecalho">
+    <div class="container cabecalho__inner">
+      <a href="#inicio" class="logo">
+        <svg class="borboleta logo__borboleta" aria-hidden="true"><use href="#borboleta"/></svg>
+        <span class="logo__texto">
+          <strong>Fernanda T. Sanches</strong>
+          <span>psicóloga</span>
+        </span>
+      </a>
+
+      <!-- Botão "hambúrguer": só aparece no celular -->
+      <button class="menu-botao" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="menu" id="menu" aria-label="Navegação principal">
+        <ul>
+          <li><a href="#inicio" class="ativo" aria-current="true">Início</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#como-funciona">Como funciona</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+
+      <!-- data-whats: o JS intercepta e abre a caixa de mensagem.
+           Sem JS, o link ainda funciona e vai direto para o WhatsApp. -->
+      <a href="https://wa.me/5511912715777" class="botao botao--claro botao--pequeno cabecalho__cta" data-whats>
+        <svg class="icone" aria-hidden="true"><use href="#i-whats"/></svg>
+        Agende sua consulta
+      </a>
+    </div>
+  </header>
+
+  <main id="conteudo">
+
+    <!-- =========================================================
+         HERO
+         ========================================================= -->
+    <section class="hero" id="inicio">
+      <!-- Linhas orgânicas decorativas -->
+      <svg class="hero__linhas" viewBox="0 0 900 410" preserveAspectRatio="xMaxYMax slice" aria-hidden="true">
+        <path d="M900 225C850 250 820 300 790 330C750 370 700 360 660 385C630 405 600 410 585 412"/>
+        <path d="M900 300C862 306 838 322 826 338C814 354 828 366 842 352C858 334 830 382 770 412"/>
+      </svg>
+
+      <div class="container hero__grid">
+        <div class="hero__texto">
+          <p class="sobretitulo">Escuta • Conhecimento • Transformação</p>
+          <h1>Um espaço para <br class="quebra">se compreender, <br class="quebra">acolher e transformar.</h1>
+          <p class="hero__descricao">
+            Atendimento psicológico com escuta acolhedora e base científica, para que você possa
+            viver com mais equilíbrio, bem-estar e qualidade de vida.
+          </p>
+
+          <div class="hero__acoes">
+            <a href="https://wa.me/5511912715777" class="botao botao--claro" data-whats>
+              <svg class="icone" aria-hidden="true"><use href="#i-whats"/></svg>
+              Agende sua consulta
+            </a>
+            <a href="#servicos" class="botao botao--contorno-claro">Conheça meus serviços</a>
+          </div>
+
+          <ul class="hero__selos">
+            <li><svg class="icone" aria-hidden="true"><use href="#i-monitor"/></svg>Atendimento online</li>
+            <li><svg class="icone" aria-hidden="true"><use href="#i-local"/></svg>Atendimento presencial</li>
+          </ul>
+        </div>
+
+        <div class="hero__assinatura">
+          <svg class="borboleta hero__borboleta" aria-hidden="true"><use href="#borboleta"/></svg>
+          <p class="hero__nome">Fernanda T. Sanches</p>
+          <p class="hero__profissao">psicóloga</p>
+          <p class="hero__crp">CRP: 06/206677</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SERVIÇOS
+         ========================================================= -->
+    <section class="servicos" id="servicos">
+      <div class="container">
+        <header class="cabeca-secao revelar">
+          <h2 class="titulo-secao">Meus serviços</h2>
+          <p>Acolhimento e conhecimento para diferentes necessidades.</p>
+        </header>
+
+        <div class="servicos__grade">
+          <article class="card revelar">
+            <span class="card__icone"><svg class="icone" aria-hidden="true"><use href="#i-broto"/></svg></span>
+            <h3>Psicoterapia Clínica</h3>
+            <p>Um espaço de escuta e reflexão para compreender emoções, pensamentos e comportamentos.</p>
+            <a href="https://wa.me/5511912715777" class="card__link" data-whats data-assunto="Psicoterapia Clínica">
+              Saiba mais<span class="sr-only"> sobre Psicoterapia Clínica</span>
+              <svg class="icone" aria-hidden="true"><use href="#i-seta"/></svg>
+            </a>
+          </article>
+
+          <article class="card revelar">
+            <span class="card__icone"><svg class="icone" aria-hidden="true"><use href="#i-cerebro"/></svg></span>
+            <h3>Neuroavaliação Psicológica</h3>
+            <p>Investigação das funções cognitivas e aspectos do funcionamento psicológico.</p>
+            <a href="https://wa.me/5511912715777" class="card__link" data-whats data-assunto="Neuroavaliação Psicológica">
+              Saiba mais<span class="sr-only"> sobre Neuroavaliação Psicológica</span>
+              <svg class="icone" aria-hidden="true"><use href="#i-seta"/></svg>
+            </a>
+          </article>
+
+          <article class="card revelar">
+            <span class="card__icone"><svg class="icone" aria-hidden="true"><use href="#i-notebook"/></svg></span>
+            <h3>Atendimento Online</h3>
+            <p>Acompanhamento psicológico por meio digital, com privacidade e atenção.</p>
+            <a href="https://wa.me/5511912715777" class="card__link" data-whats data-assunto="Atendimento Online">
+              Saiba mais<span class="sr-only"> sobre Atendimento Online</span>
+              <svg class="icone" aria-hidden="true"><use href="#i-seta"/></svg>
+            </a>
+          </article>
+
+          <article class="card revelar">
+            <span class="card__icone"><svg class="icone" aria-hidden="true"><use href="#i-poltrona"/></svg></span>
+            <h3>Atendimento Presencial</h3>
+            <p>Atendimento em ambiente acolhedor e apropriado.</p>
+            <a href="https://wa.me/5511912715777" class="card__link" data-whats data-assunto="Atendimento Presencial">
+              Saiba mais<span class="sr-only"> sobre Atendimento Presencial</span>
+              <svg class="icone" aria-hidden="true"><use href="#i-seta"/></svg>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SOBRE MIM
+         ========================================================= -->
+    <section class="sobre" id="sobre">
+      <svg class="borboleta sobre__borboleta" aria-hidden="true"><use href="#borboleta"/></svg>
+
+      <div class="container sobre__grid">
+        <div class="sobre__texto revelar">
+          <p class="sobretitulo sobretitulo--traco">Sobre mim</p>
+          <h2>Fernanda T. Sanches</h2>
+          <p class="sobre__cargo">Psicóloga Clínica e Neuropsicóloga</p>
+          <p class="sobre__crp">CRP: 06/206677</p>
+          <p>
+            Sou formada em Psicologia pela Universidade Nove de Julho e pós-graduada em
+            Neuropsicologia pela Universidade Municipal de São Caetano do Sul.
+          </p>
+          <p>
+            Atuo com psicoterapia clínica, neuroavaliação psicológica e tenho experiência na área
+            escolar, sempre com base nos princípios éticos da profissão e no cuidado humanizado.
+          </p>
+          <a href="https://wa.me/5511912715777" class="botao botao--contorno" data-whats data-assunto="Outro assunto">
+            Saiba mais sobre minha trajetória
+          </a>
+        </div>
+
+        <ul class="diferenciais revelar">
+          <li>
+            <svg class="icone" aria-hidden="true"><use href="#i-folha"/></svg>
+            <div><h3>Abordagem comportamental</h3><p>Estratégias práticas para o seu dia a dia.</p></div>
+          </li>
+          <li>
+            <svg class="icone" aria-hidden="true"><use href="#i-coracao"/></svg>
+            <div><h3>Escuta acolhedora</h3><p>Um espaço seguro para ser você.</p></div>
+          </li>
+          <li>
+            <svg class="icone" aria-hidden="true"><use href="#i-cerebro"/></svg>
+            <div><h3>Formação em Neuropsicologia</h3><p>Conhecimento aplicado à prática clínica.</p></div>
+          </li>
+          <li>
+            <svg class="icone" aria-hidden="true"><use href="#i-pessoas"/></svg>
+            <div><h3>Experiência em Psicologia Escolar</h3><p>Atuação em contextos escolares e sociais.</p></div>
+          </li>
+          <li>
+            <svg class="icone" aria-hidden="true"><use href="#i-escudo"/></svg>
+            <div><h3>Ética e responsabilidade</h3><p>Atendimento pautado pelos princípios do CFP.</p></div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         COMO FUNCIONA + CHAMADA FINAL (CTA)
+         ========================================================= -->
+    <section class="como" id="como-funciona">
+      <div class="container">
+        <h2 class="titulo-secao revelar">Como funciona?</h2>
+
+        <ol class="etapas">
+          <li class="etapa revelar">
+            <div class="etapa__topo">
+              <span class="etapa__numero" aria-hidden="true">1</span>
+              <svg class="icone etapa__icone" aria-hidden="true"><use href="#i-conversa"/></svg>
+            </div>
+            <h3>Primeiro contato</h3>
+            <p>Você entra em contato para conhecer os serviços, esclarecer dúvidas e verificar horários.</p>
+          </li>
+          <li class="etapa revelar">
+            <div class="etapa__topo">
+              <span class="etapa__numero" aria-hidden="true">2</span>
+              <svg class="icone etapa__icone" aria-hidden="true"><use href="#i-calendario"/></svg>
+            </div>
+            <h3>Compreensão da sua demanda</h3>
+            <p>Exploramos suas necessidades e expectativas para definir o melhor acompanhamento.</p>
+          </li>
+          <li class="etapa revelar">
+            <div class="etapa__topo">
+              <span class="etapa__numero" aria-hidden="true">3</span>
+              <svg class="icone etapa__icone" aria-hidden="true"><use href="#i-broto"/></svg>
+            </div>
+            <h3>Acompanhamento individualizado</h3>
+            <p>O processo é conduzido com base na sua história e nos objetivos estabelecidos em conjunto.</p>
+          </li>
+        </ol>
+
+        <div class="cta revelar" id="cta">
+          <h2 class="cta__titulo">
+            Seu cuidado <span class="cta__traco" aria-hidden="true"></span><br>também merece espaço.
+          </h2>
+          <p>
+            Começar um acompanhamento psicológico pode ser uma oportunidade de olhar para si com mais
+            atenção, compreender suas experiências e construir novas possibilidades.
+          </p>
+          <div class="cta__acao">
+            <a href="https://wa.me/5511912715777" class="botao botao--contorno" data-whats>
+              <svg class="icone" aria-hidden="true"><use href="#i-whats"/></svg>
+              Agende sua consulta
+            </a>
+            <small>Atendimento online e presencial</small>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================
+       RODAPÉ
+       ========================================================= -->
+  <footer class="rodape" id="contato">
+    <svg class="rodape__linhas rodape__linhas--esq" viewBox="0 0 260 220" preserveAspectRatio="xMinYMax meet" aria-hidden="true">
+      <path d="M0 210C50 190 92 140 96 80C98 40 112 10 140 0"/>
+      <path d="M0 140C30 120 48 80 40 30"/>
+    </svg>
+    <svg class="rodape__linhas rodape__linhas--dir" viewBox="0 0 260 220" preserveAspectRatio="xMaxYMax meet" aria-hidden="true">
+      <path d="M260 40C200 60 150 120 140 220"/>
+      <path d="M260 110C222 128 200 170 205 220"/>
+    </svg>
+
+    <div class="container rodape__inner">
+      <a href="#inicio" class="rodape__marca">
+        <svg class="borboleta rodape__borboleta" aria-hidden="true"><use href="#borboleta"/></svg>
+        <strong>Fernanda T. Sanches</strong>
+        <span>psicóloga</span>
+        <small>CRP: 06/206677</small>
+      </a>
+
+      <nav aria-label="Rodapé">
+        <ul class="rodape__menu">
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#como-funciona">Como funciona</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+
+      <ul class="rodape__contatos">
+        <li>
+          <a href="https://wa.me/5511912715777" data-whats>
+            <svg class="icone" aria-hidden="true"><use href="#i-whats"/></svg>(11) 91271-5777
+          </a>
+        </li>
+        <li>
+          <a href="mailto:fernandasanchespsico@gmail.com">
+            <svg class="icone" aria-hidden="true"><use href="#i-email"/></svg>fernandasanchespsico@gmail.com
+          </a>
+        </li>
+        <li><svg class="icone" aria-hidden="true"><use href="#i-local"/></svg>Ribeirão Pires - SP</li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- =========================================================
+       CAIXA DE MENSAGEM → WHATSAPP
+       ========================================================= -->
+  <button class="whats-balao" type="button">Ficou com alguma dúvida? Me envie uma mensagem.</button>
+
+  <button class="whats-flutuante" type="button" aria-label="Enviar mensagem pelo WhatsApp" aria-controls="chat" aria-expanded="false">
+    <svg class="icone" aria-hidden="true"><use href="#i-whats"/></svg>
+  </button>
+
+  <section class="chat" id="chat" role="dialog" aria-labelledby="chat-titulo">
+    <header class="chat__topo">
+      <span class="chat__avatar"><svg class="borboleta" aria-hidden="true"><use href="#borboleta"/></svg></span>
+      <div>
+        <strong id="chat-titulo">Fernanda T. Sanches</strong>
+        <span>Psicóloga · CRP 06/206677</span>
+      </div>
+      <button class="chat__fechar" type="button" aria-label="Fechar caixa de mensagem">
+        <svg class="icone" aria-hidden="true"><use href="#i-fechar"/></svg>
+      </button>
+    </header>
+
+    <div class="chat__corpo">
+      <p class="chat__bolha">
+        Olá! Que bom ter você aqui. Conte um pouco sobre o que procura e continuamos a conversa pelo WhatsApp.
+      </p>
+
+      <!-- novalidate: a validação é feita pelo JS, com mensagens em português -->
+      <form class="chat__form" id="form-whats" novalidate>
+        <div class="campo">
+          <label for="nome">Seu nome</label>
+          <input id="nome" name="nome" type="text" autocomplete="given-name" required maxlength="60">
+        </div>
+
+        <div class="campo">
+          <label for="assunto">Assunto</label>
+          <select id="assunto" name="assunto">
+            <option>Agendar uma consulta</option>
+            <option>Psicoterapia Clínica</option>
+            <option>Neuroavaliação Psicológica</option>
+            <option>Atendimento Online</option>
+            <option>Atendimento Presencial</option>
+            <option>Outro assunto</option>
+          </select>
+        </div>
+
+        <fieldset class="campo">
+          <legend>Prefere atendimento</legend>
+          <div class="opcoes">
+            <label class="pilula"><input type="radio" name="modalidade" value="Online"><span>Online</span></label>
+            <label class="pilula"><input type="radio" name="modalidade" value="Presencial"><span>Presencial</span></label>
+            <label class="pilula"><input type="radio" name="modalidade" value="Ainda não sei" checked><span>Ainda não sei</span></label>
+          </div>
+        </fieldset>
+
+        <div class="campo">
+          <label for="mensagem">Mensagem <span class="opcional">(opcional)</span></label>
+          <textarea id="mensagem" name="mensagem" rows="3" maxlength="500"></textarea>
+        </div>
+
+        <p class="chat__erro" aria-live="polite"></p>
+
+        <button type="submit" class="botao botao--whats">
+          <svg class="icone" aria-hidden="true"><use href="#i-whats"/></svg>
+          Continuar no WhatsApp
+        </button>
+        <p class="chat__aviso">Você será direcionado(a) ao WhatsApp. Nada é salvo neste site.</p>
+      </form>
+    </div>
+  </section>
+
+</body>
+</html>

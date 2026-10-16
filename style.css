@@ -1,0 +1,626 @@
+/* =========================================================
+   Fernanda T. Sanches — Psicóloga | style.css
+   Ordem: 1 variáveis · 2 reset · 3 utilitários · 4 botões
+          5 cabeçalho · 6 hero · 7 serviços · 8 sobre
+          9 como funciona + CTA · 10 rodapé · 11 chat WhatsApp
+          12 animações · 13 responsivo
+   ========================================================= */
+
+/* ---------- 1. VARIÁVEIS (as cores e medidas do design) ---------- */
+:root {
+  --verde-900: #23504f;   /* títulos */
+  --verde-700: #2f6a69;   /* fundo do hero e do rodapé */
+  --verde-600: #3b7876;   /* destaques e foco */
+  --verde-200: #cfe0db;   /* linhas divisórias claras */
+  --verde-100: #e5ece8;   /* fundo da seção "Sobre" */
+  --verde-50:  #dce6e1;   /* fundo da caixa CTA */
+  --creme:      #f6f2eb;  /* fundo geral da página */
+  --creme-card: #faf7f2;  /* fundo dos cards */
+  --branco:     #fffdf8;
+  --texto:       #2b4847;
+  --texto-suave: #4d6866;
+  --borda:       #e3ddd2;
+  --erro:        #a3442f;
+
+  --fonte-titulo: 'Cormorant Garamond', Georgia, serif;
+  --fonte-texto: 'Nunito Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --raio: 12px;
+  --sombra: 0 12px 32px rgba(31, 77, 76, .12);
+  --container: 1180px;
+  --cabecalho-altura: 84px;
+}
+
+/* ---------- 2. RESET (zera diferenças entre navegadores) ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+
+html {
+  scroll-behavior: smooth;                        /* rolagem suave nos links do menu */
+  scroll-padding-top: var(--cabecalho-altura);    /* não esconde o título atrás do cabeçalho fixo */
+}
+
+body {
+  font-family: var(--fonte-texto);
+  color: var(--texto);
+  background: var(--creme);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; padding: 0; }
+button, input, select, textarea { font: inherit; color: inherit; }
+
+h1, h2, h3 {
+  font-family: var(--fonte-titulo);
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--verde-900);
+}
+
+/* ---------- 3. UTILITÁRIOS ---------- */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+/* o sprite existe só para guardar os desenhos; não ocupa espaço */
+.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+/* esconde visualmente, mas o leitor de tela ainda lê */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+.pular {
+  position: absolute; left: 16px; top: -80px; z-index: 100;
+  background: var(--branco); color: var(--verde-900);
+  padding: 10px 16px; border-radius: 8px; font-weight: 700;
+}
+.pular:focus { top: 16px; }
+
+:focus-visible { outline: 2px solid var(--verde-600); outline-offset: 3px; }
+
+/* ícones de linha: a cor vem de "color" do elemento pai (currentColor) */
+.icone {
+  width: 1.25em; height: 1.25em; flex-shrink: 0;
+  fill: none; stroke: currentColor; stroke-width: 1.6;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+
+/* a borboleta segue a mesma lógica, com traço mais fino */
+.borboleta {
+  aspect-ratio: 200 / 170;   /* proporção do desenho: altura calculada sozinha */
+  height: auto;
+  fill: none; stroke: currentColor; stroke-width: 1.1;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+
+/* sobretítulo em caixa alta espaçada (ex.: "ESCUTA • CONHECIMENTO") */
+.sobretitulo {
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+}
+
+/* título de seção com tracinho à direita ("Meus serviços ——") */
+.titulo-secao {
+  display: flex; align-items: center; justify-content: center; gap: 20px;
+  font-size: clamp(2.1rem, 3.4vw, 2.7rem);
+}
+.titulo-secao::after {
+  content: "";
+  width: 44px; height: 1px;
+  background: currentColor; opacity: .45;
+}
+
+/* ---------- 4. BOTÕES (uma base + variações) ---------- */
+.botao {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 16px 28px;
+  border: 1.5px solid transparent;
+  border-radius: 999px;            /* formato de pílula */
+  font-weight: 700; font-size: .95rem; line-height: 1.2;
+  cursor: pointer;
+  transition: transform .25s, background-color .25s, color .25s, box-shadow .25s, border-color .25s;
+}
+.botao:hover { transform: translateY(-2px); }
+
+.botao--claro { background: var(--branco); color: var(--verde-900); box-shadow: 0 6px 18px rgba(0, 0, 0, .12); }
+.botao--claro:hover { background: #fff; box-shadow: 0 10px 26px rgba(0, 0, 0, .18); }
+
+.botao--contorno-claro { border-color: rgba(255, 255, 255, .7); color: #fff; }
+.botao--contorno-claro:hover { background: rgba(255, 255, 255, .12); border-color: #fff; }
+
+.botao--contorno { border-color: var(--verde-700); color: var(--verde-900); }
+.botao--contorno:hover { background: var(--verde-700); color: #fff; }
+
+.botao--pequeno { padding: 11px 20px; font-size: .82rem; }
+
+.botao--whats { width: 100%; background: var(--verde-700); color: #fff; }
+.botao--whats:hover { background: var(--verde-900); }
+
+/* ---------- 5. CABEÇALHO ---------- */
+.cabecalho {
+  position: fixed; inset: 0 0 auto; z-index: 50;
+  height: var(--cabecalho-altura);
+  display: flex; align-items: center;
+  color: #fff;
+  transition: background-color .3s, box-shadow .3s, height .3s;
+}
+/* classe adicionada pelo JS quando a página rola */
+.cabecalho.rolou,
+.cabecalho.menu-aberto {
+  --cabecalho-altura: 70px;
+  background: rgba(41, 96, 95, .96);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, .12);
+}
+
+.cabecalho__inner { display: flex; align-items: center; gap: 36px; }
+
+.logo { display: flex; align-items: center; gap: 12px; margin-right: auto; }
+.logo__borboleta { width: 58px; color: var(--branco); transition: width .3s; }
+.cabecalho.rolou .logo__borboleta { width: 48px; }
+.logo__texto { display: flex; flex-direction: column; line-height: 1; }
+.logo__texto strong { font-family: var(--fonte-titulo); font-weight: 500; font-size: 1.6rem; }
+.logo__texto span { font-weight: 300; font-size: 1rem; opacity: .9; margin-top: 4px; }
+
+.menu ul { display: flex; gap: 34px; }
+.menu a {
+  position: relative;
+  padding-block: 6px;
+  font-size: .85rem;
+  color: rgba(255, 255, 255, .85);
+  transition: color .2s;
+}
+/* sublinhado que "cresce" da esquerda para a direita */
+.menu a::after {
+  content: "";
+  position: absolute; left: 0; right: 0; bottom: 0;
+  height: 1.5px; background: #fff;
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .3s;
+}
+.menu a:hover { color: #fff; }
+.menu a:hover::after,
+.menu a.ativo::after { transform: scaleX(1); }
+.menu a.ativo { color: #fff; font-weight: 600; }
+
+.menu-botao {
+  display: none;
+  flex-direction: column; justify-content: center; gap: 5px;
+  width: 44px; height: 44px; padding: 10px;
+  background: none; border: 0; cursor: pointer;
+}
+.menu-botao span { display: block; height: 2px; background: #fff; border-radius: 2px; transition: transform .3s, opacity .3s; }
+/* vira um "X" quando aberto */
+.menu-botao[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.menu-botao[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.menu-botao[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ---------- 6. HERO ---------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  background: radial-gradient(120% 95% at 75% 18%, #4b8684 0%, #346f6e 45%, #2a6160 100%);
+  padding: calc(var(--cabecalho-altura) + 56px) 0 44px;
+}
+
+.hero__linhas {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  fill: none; stroke: rgba(255, 255, 255, .7); stroke-width: 1.3;
+  pointer-events: none;
+}
+
+.hero__grid {
+  position: relative;          /* fica acima das linhas decorativas */
+  display: grid;
+  grid-template-columns: 1.25fr .75fr;
+  align-items: center;
+  gap: 48px;
+}
+
+.hero .sobretitulo { opacity: .85; margin-bottom: 18px; }
+
+.hero h1 {
+  color: #fff;
+  font-size: clamp(2.6rem, 4.7vw, 3.9rem);
+  font-weight: 500;
+  line-height: 1.04;
+  margin-bottom: 22px;
+}
+
+.hero__descricao { max-width: 31em; font-size: 1.12rem; font-weight: 300; opacity: .95; margin-bottom: 32px; }
+
+.hero__acoes { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 30px; }
+.hero__acoes .botao { min-width: 236px; padding-block: 17px; }
+
+.hero__selos { display: flex; flex-wrap: wrap; gap: 30px; font-size: .82rem; opacity: .9; }
+.hero__selos li { display: flex; align-items: center; gap: 10px; }
+
+.hero__assinatura { text-align: center; }
+.hero__borboleta {
+  width: min(300px, 80%);
+  margin: 0 auto 4px;
+  color: var(--branco);
+  stroke-width: .9;
+  animation: flutuar 7s ease-in-out infinite;
+}
+.hero__nome { font-family: var(--fonte-titulo); font-size: clamp(2rem, 3vw, 2.6rem); font-weight: 500; line-height: 1; }
+.hero__profissao { font-size: 1.25rem; font-weight: 300; opacity: .85; }
+.hero__crp { font-size: .78rem; opacity: .75; margin-top: 6px; }
+
+/* ---------- 7. SERVIÇOS ---------- */
+.servicos { padding: 56px 0 64px; }
+
+.cabeca-secao { text-align: center; margin-bottom: 30px; }
+.cabeca-secao p { font-size: .92rem; margin-top: 12px; }
+
+.servicos__grade { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+
+.card {
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center;
+  padding: 18px 24px 28px;
+  background: var(--creme-card);
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  transition: transform .3s, box-shadow .3s;
+}
+.card:hover { transform: translateY(-4px); box-shadow: var(--sombra); }
+
+.card__icone {
+  display: grid; place-items: center;
+  width: 64px; height: 64px; margin-bottom: 16px;
+  border-radius: 50%;
+  background: var(--verde-100);
+  color: var(--verde-700);
+}
+.card__icone .icone { width: 32px; height: 32px; stroke-width: 1.3; }
+
+.card h3 { font-size: 1.45rem; margin-bottom: 8px; }
+.card p { font-size: .9rem; line-height: 1.55; color: var(--texto-suave); margin-bottom: 22px; }
+
+.card__link {
+  margin-top: auto;            /* empurra o link sempre para o rodapé do card */
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: .92rem; font-weight: 600;
+  color: var(--verde-700);
+}
+.card__link .icone { width: 1em; height: 1em; transition: transform .25s; }
+.card__link:hover .icone { transform: translateX(4px); }
+
+/* ---------- 8. SOBRE MIM ---------- */
+.sobre {
+  position: relative;
+  overflow: hidden;            /* corta a borboleta gigante na borda */
+  background: var(--verde-100);
+  padding: 72px 0;
+}
+
+.sobre__borboleta {
+  position: absolute; left: -340px; top: 50%;
+  width: 700px;
+  transform: translateY(-50%) rotate(-12deg);
+  color: #bcd4ce;
+  stroke-width: 1.4;
+  opacity: .7;
+  pointer-events: none;
+}
+
+.sobre__grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  /* 24px do container + espaço extra para a borboleta */
+  padding-left: calc(24px + clamp(0px, 13vw, 190px));
+}
+
+.sobre__texto { padding-right: 44px; border-right: 1px solid var(--verde-200); }
+
+.sobretitulo--traco { display: flex; align-items: center; gap: 14px; color: var(--texto-suave); margin-bottom: 14px; }
+.sobretitulo--traco::after { content: ""; width: 38px; height: 1px; background: currentColor; }
+
+.sobre h2 { font-size: clamp(2.2rem, 3.4vw, 2.7rem); margin-bottom: 10px; }
+.sobre__cargo { font-size: 1.2rem; color: var(--texto-suave); }
+.sobre__crp { font-size: 1.05rem; color: var(--texto-suave); margin-bottom: 22px; }
+.sobre__texto p:not([class]) { max-width: 36em; font-size: .9rem; margin-bottom: 16px; }
+.sobre__texto .botao { margin-top: 10px; padding: 12px 26px; font-size: .88rem; }
+
+.diferenciais { display: flex; flex-direction: column; justify-content: center; gap: 24px; padding-left: 40px; }
+.diferenciais li { display: flex; align-items: flex-start; gap: 20px; }
+.diferenciais .icone { width: 34px; height: 34px; color: var(--verde-700); stroke-width: 1.3; }
+.diferenciais h3 { font-family: var(--fonte-texto); font-size: .92rem; font-weight: 700; line-height: 1.3; margin-bottom: 2px; }
+.diferenciais p { font-size: .84rem; color: var(--texto-suave); }
+
+/* ---------- 9. COMO FUNCIONA + CTA ---------- */
+.como { padding: 60px 0 18px; }
+.como .titulo-secao { margin-bottom: 34px; }
+
+.etapas { display: grid; grid-template-columns: repeat(3, 1fr); margin-bottom: 30px; }
+.etapa { text-align: center; padding: 0 32px; }
+.etapa + .etapa { border-left: 1px solid var(--borda); }   /* linha só entre as etapas */
+
+.etapa__topo { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 14px; }
+.etapa__numero {
+  display: grid; place-items: center;
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: var(--verde-100);
+  font-size: .85rem; font-weight: 600; color: var(--verde-900);
+}
+.etapa__icone { width: 36px; height: 36px; color: var(--verde-700); stroke-width: 1.3; }
+.etapa h3 { font-size: 1.4rem; margin-bottom: 4px; }
+.etapa p { max-width: 24em; margin-inline: auto; font-size: .88rem; color: var(--texto-suave); }
+
+.cta {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr auto;
+  align-items: center;
+  gap: 32px;
+  padding: 26px 34px;
+  background: var(--verde-50);
+  border-radius: var(--raio);
+}
+.cta__titulo { font-size: clamp(1.8rem, 2.6vw, 2.2rem); font-weight: 500; line-height: 1.15; }
+.cta__traco { display: inline-block; width: 40px; height: 1px; margin-left: 10px; vertical-align: middle; background: currentColor; opacity: .5; }
+.cta p { font-size: .86rem; color: var(--texto-suave); }
+.cta__acao { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.cta__acao .botao { min-width: 220px; padding-block: 14px; }
+.cta__acao small { font-size: .75rem; color: var(--texto-suave); }
+
+/* ---------- 10. RODAPÉ ---------- */
+.rodape {
+  position: relative;
+  overflow: hidden;
+  padding: 26px 0 30px;
+  background: var(--verde-700);
+  color: #fff;
+  text-align: center;
+}
+
+.rodape__linhas {
+  position: absolute; bottom: 0;
+  width: 260px; height: 100%;
+  fill: none; stroke: rgba(255, 255, 255, .65); stroke-width: 1.3;
+  pointer-events: none;
+}
+.rodape__linhas--esq { left: 0; }
+.rodape__linhas--dir { right: 0; }
+
+.rodape__inner { position: relative; display: flex; flex-direction: column; align-items: center; }
+
+.rodape__marca { display: flex; flex-direction: column; align-items: center; line-height: 1.1; margin-bottom: 22px; }
+.rodape__borboleta { width: 96px; color: var(--branco); margin-bottom: 6px; }
+.rodape__marca strong { font-family: var(--fonte-titulo); font-weight: 500; font-size: 1.65rem; }
+.rodape__marca span { font-weight: 300; font-size: 1rem; opacity: .85; }
+.rodape__marca small { font-size: .66rem; opacity: .8; margin-top: 4px; }
+
+.rodape__menu { display: flex; flex-wrap: wrap; justify-content: center; font-size: .88rem; }
+.rodape__menu li + li::before { content: "|"; margin-inline: 18px; opacity: .55; }   /* separador */
+.rodape__menu a:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+.rodape__contatos {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 46px;
+  width: min(100%, 780px);
+  margin-top: 18px; padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, .3);
+  font-size: .85rem;
+}
+.rodape__contatos li,
+.rodape__contatos a { display: flex; align-items: center; gap: 10px; }
+.rodape__contatos a:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+/* ---------- 11. CAIXA DE MENSAGEM / WHATSAPP ---------- */
+.whats-flutuante {
+  position: fixed; right: 24px; bottom: 24px; z-index: 60;
+  display: grid; place-items: center;
+  width: 60px; height: 60px;
+  border: 0; border-radius: 50%;
+  background: var(--verde-700); color: #fff;
+  box-shadow: 0 10px 26px rgba(29, 71, 70, .35);
+  cursor: pointer;
+  transition: transform .25s, background-color .25s;
+}
+.whats-flutuante:hover { transform: scale(1.06); background: var(--verde-900); }
+.whats-flutuante .icone { width: 28px; height: 28px; }
+
+/* anel pulsando para chamar atenção (classe colocada pelo JS) */
+.whats-flutuante.pulsar::after {
+  content: "";
+  position: absolute; inset: 0;
+  border: 2px solid var(--verde-600); border-radius: 50%;
+  animation: pulsar 1.8s ease-out infinite;
+}
+
+.whats-balao {
+  position: fixed; right: 96px; bottom: 34px; z-index: 60;
+  max-width: 250px;
+  padding: 12px 16px;
+  border: 0; border-radius: 14px 14px 4px 14px;
+  background: var(--branco); color: var(--verde-900);
+  box-shadow: var(--sombra);
+  font-size: .85rem; text-align: left; line-height: 1.4;
+  cursor: pointer;
+  opacity: 0; visibility: hidden; transform: translateY(8px);
+  transition: opacity .35s, transform .35s, visibility .35s;
+}
+.whats-balao.visivel { opacity: 1; visibility: visible; transform: none; }
+
+.chat {
+  position: fixed; right: 24px; bottom: 96px; z-index: 70;
+  display: flex; flex-direction: column;
+  width: min(370px, calc(100vw - 32px));
+  max-height: calc(100dvh - 120px);
+  overflow: hidden;
+  background: var(--creme);
+  border-radius: 18px;
+  box-shadow: 0 24px 60px rgba(20, 50, 49, .28);
+  /* fechado: invisível e fora do alcance do Tab */
+  opacity: 0; visibility: hidden;
+  transform: translateY(16px) scale(.98);
+  transform-origin: bottom right;
+  transition: opacity .3s, transform .3s, visibility .3s;
+}
+.chat.aberto { opacity: 1; visibility: visible; transform: none; }
+
+.chat__topo { display: flex; align-items: center; gap: 12px; padding: 16px 18px; background: var(--verde-700); color: #fff; }
+.chat__avatar { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, .12); flex-shrink: 0; }
+.chat__avatar .borboleta { width: 32px; color: #fff; }
+.chat__topo strong { display: block; font-family: var(--fonte-titulo); font-size: 1.25rem; font-weight: 600; line-height: 1.1; }
+.chat__topo span { font-size: .75rem; opacity: .85; }
+.chat__fechar {
+  display: grid; place-items: center;
+  width: 36px; height: 36px; margin-left: auto;
+  border: 0; border-radius: 50%;
+  background: none; color: #fff; cursor: pointer;
+}
+.chat__fechar:hover { background: rgba(255, 255, 255, .14); }
+
+.chat__corpo { padding: 18px; overflow-y: auto; }
+.chat__bolha {
+  margin-bottom: 16px; padding: 12px 14px;
+  border-radius: 4px 14px 14px 14px;
+  background: var(--branco);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
+  font-size: .88rem;
+}
+
+.chat__form { display: flex; flex-direction: column; gap: 12px; }
+.campo { display: flex; flex-direction: column; gap: 4px; border: 0; padding: 0; min-width: 0; }
+.campo label, .campo legend { padding: 0; font-size: .78rem; font-weight: 700; color: var(--verde-900); }
+.campo legend { margin-bottom: 6px; }
+.opcional { font-weight: 400; color: var(--texto-suave); }
+
+.campo input, .campo select, .campo textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--borda); border-radius: 10px;
+  background: var(--branco);
+  font-size: .9rem;
+  transition: border-color .2s, box-shadow .2s;
+}
+.campo textarea { resize: vertical; min-height: 72px; }
+.campo input:focus, .campo select:focus, .campo textarea:focus {
+  outline: none;
+  border-color: var(--verde-600);
+  box-shadow: 0 0 0 3px rgba(59, 120, 118, .18);
+}
+.campo--erro input { border-color: var(--erro); }
+
+/* rádios em formato de pílula: o input fica escondido, o <span> é o visual */
+.opcoes { display: flex; flex-wrap: wrap; gap: 8px; }
+.pilula { position: relative; }
+.pilula input { position: absolute; opacity: 0; }
+.pilula span {
+  display: inline-block;
+  padding: 7px 14px;
+  border: 1px solid var(--borda); border-radius: 999px;
+  background: var(--branco);
+  font-size: .8rem; cursor: pointer;
+  transition: background-color .2s, color .2s, border-color .2s;
+}
+.pilula input:checked + span { background: var(--verde-700); border-color: var(--verde-700); color: #fff; }
+.pilula input:focus-visible + span { outline: 2px solid var(--verde-600); outline-offset: 2px; }
+
+.chat__erro { min-height: 1em; font-size: .8rem; color: var(--erro); }
+.chat__erro:empty { display: none; }
+.chat__aviso { font-size: .72rem; text-align: center; color: var(--texto-suave); }
+
+/* ---------- 12. ANIMAÇÕES ---------- */
+/* elementos com .revelar surgem ao entrar na tela (só se o JS estiver ativo) */
+.js .revelar { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+.js .revelar.visivel { opacity: 1; transform: none; }
+.servicos__grade .card:nth-child(2) { transition-delay: .08s; }
+.servicos__grade .card:nth-child(3) { transition-delay: .16s; }
+.servicos__grade .card:nth-child(4) { transition-delay: .24s; }
+.etapa:nth-child(2) { transition-delay: .1s; }
+.etapa:nth-child(3) { transition-delay: .2s; }
+
+@keyframes flutuar {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+@keyframes pulsar {
+  from { transform: scale(1);   opacity: .8; }
+  to   { transform: scale(1.6); opacity: 0; }
+}
+
+/* respeita quem pediu "reduzir movimento" no sistema */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+
+/* ---------- 13. RESPONSIVO ---------- */
+/* notebook pequeno / tablet deitado */
+@media (max-width: 1080px) {
+  .servicos__grade { grid-template-columns: repeat(2, 1fr); }
+  .sobre__grid { padding-left: 24px; }
+  .sobre__borboleta { left: -440px; opacity: .45; }
+  .cta { grid-template-columns: 1fr 1fr; }
+  .cta__acao { grid-column: 1 / -1; }
+}
+
+/* tablet em pé / celular grande */
+@media (max-width: 880px) {
+  :root { --cabecalho-altura: 72px; }
+
+  .cabecalho__cta { display: none; }       /* o botão flutuante cumpre esse papel */
+  .menu-botao { display: flex; }
+  .menu {
+    position: absolute; top: 100%; left: 0; right: 0;
+    max-height: 0; overflow: hidden;
+    background: var(--verde-700);
+    transition: max-height .35s ease;
+  }
+  .menu.aberto { max-height: 360px; box-shadow: 0 12px 24px rgba(0, 0, 0, .15); }
+  .menu ul { flex-direction: column; gap: 0; padding: 4px 24px 18px; }
+  .menu a { display: block; padding: 14px 0; font-size: 1rem; border-bottom: 1px solid rgba(255, 255, 255, .12); }
+  .menu a::after { display: none; }
+
+  .hero__grid { grid-template-columns: 1fr; text-align: center; gap: 36px; }
+  .hero__descricao { margin-inline: auto; }
+  .hero__acoes, .hero__selos { justify-content: center; }
+  .hero__borboleta { width: 200px; }
+  .hero__linhas { opacity: .35; }   /* não competir com o texto */
+  .quebra { display: none; }
+
+  .sobre__grid { grid-template-columns: 1fr; }
+  .sobre__texto { padding: 0 0 36px; margin-bottom: 36px; border-right: 0; border-bottom: 1px solid var(--verde-200); }
+  .diferenciais { padding-left: 0; }
+
+  .etapas { grid-template-columns: 1fr; gap: 32px; }
+  .etapa + .etapa { border-left: 0; border-top: 1px solid var(--borda); padding-top: 32px; }
+
+  .cta { grid-template-columns: 1fr; text-align: center; }
+  .cta__traco { display: none; }
+
+  .rodape__linhas { width: 150px; opacity: .6; }
+}
+
+/* celular */
+@media (max-width: 560px) {
+  .logo__borboleta, .cabecalho.rolou .logo__borboleta { width: 44px; }
+  .logo__texto strong { font-size: 1.3rem; }
+
+  .hero__acoes .botao { width: 100%; min-width: 0; }
+  .servicos__grade { grid-template-columns: 1fr; }
+  .titulo-secao::after { width: 28px; }
+
+  .rodape__menu li + li::before { margin-inline: 10px; }
+  .rodape__contatos { flex-direction: column; align-items: center; }
+
+  .whats-flutuante { right: 16px; bottom: 16px; }
+  .whats-balao { right: 84px; bottom: 24px; max-width: 200px; }
+  .chat { right: 16px; bottom: 88px; }
+}
