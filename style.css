@@ -624,3 +624,27 @@ h1, h2, h3 {
   .whats-balao { right: 84px; bottom: 24px; max-width: 200px; }
   .chat { right: 16px; bottom: 88px; }
 }
+/* ===== Foto do "Sobre mim" ===== */
+.sobre__lateral {
+  display: flex;
+  flex-direction: column;   /* foto em cima, lista embaixo */
+  gap: 2.5rem;              /* espaço entre as duas */
+}
+
+.sobre__foto {
+  margin: 0 auto;           /* tira a margem padrão do <figure> e centraliza */
+  width: min(100%, 340px);  /* no máximo 340px, mas encolhe no celular */
+  aspect-ratio: 4 / 5;      /* formato retrato */
+  border-radius: 50% 50% 1.5rem 1.5rem / 40% 40% 1.5rem 1.5rem; /* formato de arco */
+  overflow: hidden;         /* corta a foto no formato do arco */
+  background: #fff;
+  box-shadow: 0 18px 40px -20px rgba(47, 106, 105, .45);
+}
+
+.sobre__foto img {
+  display: block;           /* remove o espacinho embaixo de imagens inline */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;        /* preenche o arco sem distorcer */
+  object-position: 50% 20%; /* prioriza a parte de cima (o rosto) ao cortar */
+}
